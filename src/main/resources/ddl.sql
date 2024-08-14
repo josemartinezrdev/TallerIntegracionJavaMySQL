@@ -74,10 +74,10 @@ CREATE TABLE activeprinciple(
 );
 
 CREATE TABLE unitmeasurement(
-    codeum INT(4) AUTO_INCREMENT,
-    descriptionmode VARCHAR(60),
+    idum INT(4) AUTO_INCREMENT,
+    nameum VARCHAR(60),
 
-    CONSTRAINT pk_codeum PRIMARY KEY (codeum)
+    CONSTRAINT pk_idum PRIMARY KEY (idum)
 );
 
 
@@ -92,12 +92,34 @@ CREATE TABLE medicine(
     
     codemodeadmin INT(4),
     codeap INT(4),
-    codeum INT(4),
+    idum INT(4),
     codelab INT(4),
 
     CONSTRAINT pk_id PRIMARY KEY (id),
     CONSTRAINT fk_medicine_modeadministration FOREIGN KEY (codemodeadmin) REFERENCES modeadministration (id),
     CONSTRAINT fk_medicine_activeprinciple FOREIGN KEY (codeap) REFERENCES activeprinciple (idap),
-    CONSTRAINT fk_medicine_unitmeasurement FOREIGN KEY (codeum) REFERENCES unitmeasurement (codeum),
+    CONSTRAINT fk_medicine_unitmeasurement FOREIGN KEY (idum) REFERENCES unitmeasurement (idum),
     CONSTRAINT fk_medicine_laboratory FOREIGN KEY (codelab) REFERENCES laboratory (id)
+);
+
+CREATE TABLE farmacy(
+    idfarmacy INT(4) AUTO_INCREMENT,
+    namefarmacy VARCHAR(60),
+    addresfarmacy VARCHAR(100),
+    longitud DECIMAL(10, 2),
+    latitud DECIMAL(10, 2),
+    logofarmacy VARCHAR(100),
+    codecityfarmacy VARCHAR(5),
+
+    CONSTRAINT pk_idfarmacy PRIMARY KEY (idfarmacy),
+    CONSTRAINT fk_farmacy_city FOREIGN KEY (codecityfarmacy) REFERENCES city (codecity)
+);
+
+CREATE TABLE farmacymedicine(
+    idfarmacy INT(4),
+    idmedicine INT(4),
+    price INT,
+
+    CONSTRAINT fk_farmacymedicine_farmacy FOREIGN KEY (idfarmacy) REFERENCES farmacy (idfarmacy),
+    CONSTRAINT fk_farmacymedicine_medicine FOREIGN KEY (idmedicine) REFERENCES medicine (id)
 );
