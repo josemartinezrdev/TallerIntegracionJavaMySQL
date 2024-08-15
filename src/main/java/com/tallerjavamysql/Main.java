@@ -6,6 +6,7 @@ import com.tallerjavamysql.actprinciple.infrastructure.ActPrincipleUi;
 import com.tallerjavamysql.city.infrastructure.CityUi;
 import com.tallerjavamysql.country.infrastructure.CountryUi;
 import com.tallerjavamysql.customer.infrastructure.CustomerUi;
+import com.tallerjavamysql.farmacy.infrastructure.FarmacyUi;
 import com.tallerjavamysql.laboratory.infrastructure.LaboratoryUi;
 import com.tallerjavamysql.medicine.infrastructure.MedicineUi;
 import com.tallerjavamysql.modeadmin.infrastructure.ModeAdminUi;
@@ -24,6 +25,7 @@ public class Main {
         ActPrincipleUi actPrincipleUi = new ActPrincipleUi();
         UnitUi unitUi = new UnitUi();
         MedicineUi medicineUi = new MedicineUi();
+        FarmacyUi farmacyUi = new FarmacyUi();
 
         String opts = "1. Country\n2. Region\n3. City\n4. Customer\n5. Mode Admin\n6. Laboratory\n7. Act Principle\n8. Unit Measure\n9. Medicine\n10. Farmacy\n11. Far - Med\n12. Quit";
         int opt;
@@ -57,6 +59,9 @@ public class Main {
                     break;
                 case 9:
                     medicineUi.menuMedicine();
+                    break;
+                case 10:
+                    farmacyUi.menuFarmacy();
                     break;
                 case 12:
                     JOptionPane.showMessageDialog(null, "Saliendo...");

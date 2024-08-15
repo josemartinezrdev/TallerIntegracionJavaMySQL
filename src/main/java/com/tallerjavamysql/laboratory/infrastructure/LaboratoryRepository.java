@@ -106,5 +106,4 @@ public class LaboratoryRepository implements LaboratoryService {
         }
         return laboratory;
     }
-
 }

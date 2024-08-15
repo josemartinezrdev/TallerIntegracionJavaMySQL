@@ -118,7 +118,7 @@ CREATE TABLE farmacy(
 CREATE TABLE farmacymedicine(
     idfarmacy INT(4),
     idmedicine INT(4),
-    price INT,
+    price DECIMAL(10, 2),
 
     CONSTRAINT fk_farmacymedicine_farmacy FOREIGN KEY (idfarmacy) REFERENCES farmacy (idfarmacy),
     CONSTRAINT fk_farmacymedicine_medicine FOREIGN KEY (idmedicine) REFERENCES medicine (id)
