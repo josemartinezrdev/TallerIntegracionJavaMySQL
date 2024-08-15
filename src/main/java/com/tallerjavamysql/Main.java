@@ -30,9 +30,14 @@ public class Main {
         FarmaMedicineUi farmaMedicineUi = new FarmaMedicineUi();
 
         String opts = "1. Country\n2. Region\n3. City\n4. Customer\n5. Mode Admin\n6. Laboratory\n7. Act Principle\n8. Unit Measure\n9. Medicine\n10. Farmacy\n11. Far - Med\n12. Quit";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al ingresar la opcion");
+                continue;
+            }
 
             switch (opt) {
                 case 1:

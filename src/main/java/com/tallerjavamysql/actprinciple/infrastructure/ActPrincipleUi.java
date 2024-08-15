@@ -36,9 +36,14 @@ public class ActPrincipleUi {
 
     public void menuActPrinciple() {
         String opts = "1. Add ActPrinciple\n2. Update ActPrinciple\n3. Delete ActPrinciple\n4. Search ActPrinciple\n5. Search ActPrinciples\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createActPrinciple();
@@ -87,7 +92,13 @@ public class ActPrincipleUi {
     }
 
     public ActPrinciple findByIdActPrinciple() {
-        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID del principio activo"));
+        int id = 0;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID del principio activo"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return null;
+        }
         ActPrinciple actPrinciple = findByIdActPrincipleUseCase.execute(id);
         showByIdActPrinciple(actPrinciple);
         return actPrinciple;

@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mysql.cj.xdevapi.JsonArray;
 import com.tallerjavamysql.country.application.CreateCountryUseCase;
 import com.tallerjavamysql.country.application.DeleteCountryUseCase;
 import com.tallerjavamysql.country.application.FindAllCountryUseCase;
@@ -37,9 +38,14 @@ public class CountryUi {
 
     public void menuCountry() {
         String opts = "1. Add Country\n2. Update Country\n3. Delete Country\n4. Search Country\n5. Search Countries\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createCountry();

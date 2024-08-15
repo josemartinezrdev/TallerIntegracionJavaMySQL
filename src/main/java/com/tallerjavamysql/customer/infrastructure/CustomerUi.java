@@ -37,9 +37,14 @@ public class CustomerUi {
 
     public void menuCustomer() {
         String opts = "1. Add Customer\n2. Update Customer\n3. Delete Customer\n4. Search Customer\n5. Search Customeres\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createCustomer();

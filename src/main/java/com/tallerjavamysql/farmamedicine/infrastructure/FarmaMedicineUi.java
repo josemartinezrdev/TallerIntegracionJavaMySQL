@@ -37,9 +37,14 @@ public class FarmaMedicineUi {
 
     public void menuFarmaMedicine() {
         String opts = "1. Add FarmaMedicine\n2. Update FarmaMedicine\n3. Delete FarmaMedicine\n4. Search FarmaMedicine\n5. Search FarmaMedicinees\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createFarmaMedicine();
@@ -67,11 +72,17 @@ public class FarmaMedicineUi {
 
     public void createFarmaMedicine() {
         FarmaMedicine farmaMedicine = new FarmaMedicine();
-        farmaMedicine.setIdfarmacy(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la farmacia")));
-        farmaMedicine
-                .setIdmedicine(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la medicina")));
-        farmaMedicine
-                .setPrice(Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese el precio de la compra")));
+        try {
+            farmaMedicine
+                    .setIdfarmacy(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la farmacia")));
+            farmaMedicine
+                    .setIdmedicine(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la medicina")));
+            farmaMedicine
+                    .setPrice(Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese el precio de la compra")));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return;
+        }
         createFarmaMedicineUseCase.execute(farmaMedicine);
     }
 
@@ -93,8 +104,15 @@ public class FarmaMedicineUi {
     }
 
     public Object[] findByIdFarmaMedicine() {
-        int idfarmacy = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la farmacia"));
-        int idmedicine = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la medicina"));
+        int idfarmacy = 0;
+        int idmedicine = 0;
+        try {
+            idfarmacy = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la farmacia"));
+            idmedicine = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la medicina"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return null;
+        }
         FarmaMedicine farmamedicine = findByIdFarmaMedicineUseCase.execute(idfarmacy, idmedicine);
         showByIdFarmaMedicine(farmamedicine);
         return new Object[] { farmamedicine, idfarmacy, idmedicine };
@@ -113,11 +131,17 @@ public class FarmaMedicineUi {
         int idfarmacy = (int) result[1];
         int idmedicine = (int) result[2];
 
-        farmaMedicine.setIdfarmacy(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la farmacia")));
-        farmaMedicine
-                .setIdmedicine(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la medicina")));
-        farmaMedicine
-                .setPrice(Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese el precio de la compra")));
+        try {
+            farmaMedicine
+                    .setIdfarmacy(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la farmacia")));
+            farmaMedicine
+                    .setIdmedicine(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el ID de la medicina")));
+            farmaMedicine
+                    .setPrice(Float.parseFloat(JOptionPane.showInputDialog(null, "Ingrese el precio de la compra")));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return;
+        }
 
         updateFarmaMedicineUseCase.execute(farmaMedicine, idfarmacy, idmedicine);
     }

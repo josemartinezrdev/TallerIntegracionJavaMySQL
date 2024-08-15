@@ -36,9 +36,14 @@ public class CityUi {
 
     public void menuCity() {
         String opts = "1. Add City\n2. Update City\n3. Delete City\n4. Search City\n5. Search Cities\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createCity();

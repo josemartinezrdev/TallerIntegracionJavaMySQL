@@ -38,9 +38,14 @@ public class MedicineUi {
 
     public void menuMedicine() {
         String opts = "1. Add Medicine\n2. Update Medicine\n3. Delete Medicine\n4. Search Medicine\n5. Search Medicinees\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createMedicine();
@@ -75,13 +80,20 @@ public class MedicineUi {
         medicine.setDescriptionshort(JOptionPane.showInputDialog(null, "Ingrese la descripcion corta"));
         medicine.setNamerol(JOptionPane.showInputDialog(null, "Ingrese el nombre del rol"));
 
-        medicine.setCodemodeadmin(
-                Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la via de administracion")));
-        medicine.setCodeap(
-                Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del principio activo")));
-        medicine.setIdum(
-                Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la unidad de medida")));
-        medicine.setCodelab(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del laboratorio")));
+        try {
+            medicine.setCodemodeadmin(
+                    Integer.parseInt(
+                            JOptionPane.showInputDialog(null, "Ingrese el codigo de la via de administracion")));
+            medicine.setCodeap(
+                    Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del principio activo")));
+            medicine.setIdum(
+                    Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la unidad de medida")));
+            medicine.setCodelab(
+                    Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del laboratorio")));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return;
+        }
 
         createMedicineUseCase.execute(medicine);
     }
@@ -117,7 +129,13 @@ public class MedicineUi {
     }
 
     public Medicine findByIdMedicine() {
-        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID de la medicina"));
+        int id = 0;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID de la medicina"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return null;
+        }
         Medicine medicine = findByIdMedicineUseCase.execute(id);
         showByIdMedicine(medicine);
         return medicine;
@@ -132,13 +150,20 @@ public class MedicineUi {
         medicine.setDescriptionshort(JOptionPane.showInputDialog(null, "Ingrese la descripcion corta"));
         medicine.setNamerol(JOptionPane.showInputDialog(null, "Ingrese el nombre del rol"));
 
-        medicine.setCodemodeadmin(
-                Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la via de administracion")));
-        medicine.setCodeap(
-                Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del principio activo")));
-        medicine.setIdum(
-                Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la unidad de medida")));
-        medicine.setCodelab(Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del laboratorio")));
+        try {
+            medicine.setCodemodeadmin(
+                    Integer.parseInt(
+                            JOptionPane.showInputDialog(null, "Ingrese el codigo de la via de administracion")));
+            medicine.setCodeap(
+                    Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del principio activo")));
+            medicine.setIdum(
+                    Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la unidad de medida")));
+            medicine.setCodelab(
+                    Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo del laboratorio")));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return;
+        }
 
         updateMedicineUseCase.execute(medicine);
     }

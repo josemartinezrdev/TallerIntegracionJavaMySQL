@@ -36,9 +36,14 @@ public class FarmacyUi {
 
     public void menuFarmacy() {
         String opts = "1. Add Farmacy\n2. Update Farmacy\n3. Delete Farmacy\n4. Search Farmacy\n5. Search pharmacies\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createFarmacy();
@@ -97,7 +102,13 @@ public class FarmacyUi {
     }
 
     public Farmacy findByIdFarmacy() {
-        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID de la farmacia"));
+        int id = 0;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID de la farmacia"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return null;
+        }
         Farmacy farmacy = findByIdFarmacyUseCase.execute(id);
         showByIdFarmacy(farmacy);
         return farmacy;

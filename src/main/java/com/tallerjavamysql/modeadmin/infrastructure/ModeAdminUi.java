@@ -36,9 +36,14 @@ public class ModeAdminUi {
 
     public void menuModeAdmin() {
         String opts = "1. Add ModeAdmin\n2. Update ModeAdmin\n3. Delete ModeAdmin\n4. Search ModeAdmin\n5. Search ModesAdmin\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createModeAdmin();
@@ -88,7 +93,13 @@ public class ModeAdminUi {
     }
 
     public ModeAdmin findByIdModeAdmin() {
-        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID del modo de administracion"));
+        int id = 0;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID del modo de administracion"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return null;
+        }
         ModeAdmin modeAdmin = findByIdModeAdminUseCase.execute(id);
         showByIdModeAdmin(modeAdmin);
         return modeAdmin;

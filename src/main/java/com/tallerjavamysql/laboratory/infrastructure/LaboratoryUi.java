@@ -36,9 +36,14 @@ public class LaboratoryUi {
 
     public void menuLaboratory() {
         String opts = "1. Add Laboratory\n2. Update Laboratory\n3. Delete Laboratory\n4. Search Laboratory\n5. Search laboratories\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createLaboratory();
@@ -89,7 +94,13 @@ public class LaboratoryUi {
     }
 
     public Laboratory findByIdLaboratory() {
-        int id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID del laboratorio"));
+        int id = 0;
+        try {
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID del laboratorio"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return null;
+        }
         Laboratory laboratory = findByIdLaboratoryUseCase.execute(id);
         showByIdLaboratory(laboratory);
         return laboratory;

@@ -36,9 +36,14 @@ public class UnitUi {
 
     public void menuUnit() {
         String opts = "1. Add Unit\n2. Update Unit\n3. Delete Unit\n4. Search Unit\n5. Search Units\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createUnit();
@@ -87,7 +92,13 @@ public class UnitUi {
     }
 
     public Unit findByIdUnit() {
-        int idum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID de la unidad de medida"));
+        int idum = 0;
+        try {
+            idum = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingresa el ID de la unidad de medida"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+            return null;
+        }
         Unit unit = findByIdUnitUseCase.execute(idum);
         showByIdUnit(unit);
         return unit;

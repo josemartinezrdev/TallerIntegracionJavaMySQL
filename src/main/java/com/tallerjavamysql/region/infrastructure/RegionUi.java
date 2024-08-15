@@ -36,9 +36,14 @@ public class RegionUi {
 
     public void menuRegion() {
         String opts = "1. Add Region\n2. Update Region\n3. Delete Region\n4. Search Region\n5. Search Regiones\n6. Return";
-        int opt;
+        int opt = 0;
         do {
-            opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            try {
+                opt = Integer.parseInt(JOptionPane.showInputDialog(null, opts));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error en el dato ingresado");
+                continue;
+            }
             switch (opt) {
                 case 1:
                     createRegion();
